@@ -8,8 +8,15 @@ services:
       - "5000:5000"
     volumes:
       - ./jenkins:/var/jenkins_home/
-  go:
-    image: golang:1.16-alpine
-    container_name: golang
+  host:
+    image: alpine
+    container_name: host
+    working_dir: /root/
+    volumes:
+      - ./configure.sh:/root/configure.sh
+    user: root
+    command: sh -c "/root/configure.sh"
     ports:
       - "8083:8083"
+      - "32:32"
+
