@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Download source') {
+            steps {
+                cleanWs()
+                echo 'Get source file!'
+                sh '''wget https://raw.githubusercontent.com/Ohmen0364/cicd/main/main.go'''
+                echo 'Download golang!'
+                sh '''apk add go'''
+            }
+        }
+        stage('Get dependencies'){
+            steps{
+                echo 'Download golang dependencies!'
+                sh '''go get -u github.com/labstack/echo/v4
+                go get -u github.com/labstack/echo/v4/middleware
+                go mod init example.com/main
+                go mod tidy'''
+            }
+        }
+        stage('Build Golang application!'){
+            steps{
+                sh '''go build main.go'''
+            }
+        }
+        stage('Run application!'){
+            steps{
+                sh '''pgrep main && kill $(pgrep main)'''
+                sh '''JENKINS_NODE_COOKIE=dontKillMe nohup go run main.go &'''
+            }
+        }
+    }
+}
+
