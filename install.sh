@@ -7,3 +7,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 sudo systemctl disable apache2
 sudo usermod -aG docker $USER
+sudo reboot
