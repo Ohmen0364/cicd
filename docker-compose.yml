@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  jenkins:
+    image: jenkins/jenkins
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+    volumes:
+      - ./jenkins:/var/jenkins_home/
+  go:
+    image: golang:1.16-alpine
+    container_name: golang
+    ports:
+      - "8083:8083"
