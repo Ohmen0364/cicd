@@ -5,7 +5,7 @@ else
 apk add --no-cache openssh
 sed -i 's|#Port 22|Port 32|g' /etc/ssh/sshd_config
 sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
-apk add openssh-server 
+apk add openssh-server openjdk11 
 ssh-keygen -t rsa -f /root/id_rsa -q -P ""
 ssh-keygen -A
 echo "root:toor" | chpasswd
