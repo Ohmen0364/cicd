@@ -16,7 +16,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	e.GET("/", func(c echo.Context) error {
-		return c.HTML(http.StatusOK, "Hello, Docker! <3 TEST CHANGES TEXT")
+		return c.HTML(http.StatusOK, "Hello, Docker! <3 TEST TWO CHANGE")
 	})
 
 	e.GET("/ping", func(c echo.Context) error {
